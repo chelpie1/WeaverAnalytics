@@ -40,4 +40,4 @@ def imageAnalysis():
 
 
 if __name__ == "__main__":
-    app.run(host='192.168.0.106',port=5013)
+    app.run(port=5013)
