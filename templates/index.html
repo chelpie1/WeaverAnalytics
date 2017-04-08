@@ -35,26 +35,25 @@
   
     <div class="row">
 
-
-		<div class="col-sm-12">
-          <!-- Time Chart --> 
+		<!-- Upload stage -->
+		
+		<div class="col-sm-3">
             <div class="chart-wrapper">
 				<div class="chart-title">
-                Image Classification
+				Upload Your Picture!
 				</div>
 			  
 			  
 			<div class="chart-stage">
 			
-			
+
 
 
 			<form id = "imageUpload" method="post" enctype="multipart/form-data" >
 				<input type="file" name="file" onchange= inputAnalysis(this.files)>
 			</form>
 
-			<img src="" height="200" alt="Image preview...">
-
+			<img src= "./static/blank.jpg" id = "image" height="200" style="border:3px solid black;"/>
 			
 			<output for="classifier" id="classifier" > Who is it? </output>
 			
@@ -64,8 +63,34 @@
 		</div>
 
 
-  
-  
+		<!-- Picture Staging -->
+		
+  		<div class="col-sm-9">
+            <div class="chart-wrapper">
+				<div class="chart-title">
+                Image Classification
+				</div>
+			  
+			  
+			<div class="chart-stage">
+			
+			<div style="height:120px;width:120px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+				
+				{%  for key, value in images.items()  %}
+				      {% for x in value[0:10] %}
+							<img src= "./static/FacialImages/{{key}}/{{x}}" id = "image" height="200" style="border:3px solid black;"/>
+							<br>
+					  {% endfor %}
+				{% endfor %}
+			
+			</div>
+			
+
+
+			</div> 
+			  
+            </div>
+		</div>
 
 
 

@@ -8,14 +8,19 @@ import ipdb
 import numpy as np
 from PIL import Image
 
-app = Flask(__name__)
+app = Flask(__name__ )
 app.debug = True
+
+imageDict = {}
+for filename in os.listdir(r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\FacialImages'):
+	
+	imageDict[filename] = [x for x in os.listdir(r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\FacialImages\\' + filename ) if x[-3:] == 'pgm' ] 
 
 
 @app.route("/", methods = ["GET","POST"])
 def index():
 								   
-	return render_template('index.html')
+	return render_template('index.html' , images = imageDict)
 
 
 
@@ -40,4 +45,4 @@ def imageAnalysis():
 
 
 if __name__ == "__main__":
-    app.run(port=5013)
+    app.run(port=5015)

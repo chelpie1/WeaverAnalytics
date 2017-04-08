@@ -15,7 +15,7 @@ function inputAnalysis(images)
 	   success: function(response) {
 		  
 		  
-		    var preview = document.querySelector('img');
+		    var preview = document.getElementById('image');
 		    preview.src = reader.result;
 			b = document.getElementById('classifier');
 			b.innerHTML = "Who is it? It's Bob"
