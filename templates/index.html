@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Weaver Analytics</title>
+	<link rel="stylesheet" href="./static/lib/css//bootstrap.min.css">
+	<link rel="stylesheet" href="./static/lib/css/keen-dashboards.css">
+	<link rel="stylesheet" href="./static/lib/css/dc.css">
+	<link rel="stylesheet" href="./static/css/custom.css">
+	<!-- <link rel="shortcut icon" href="{{ url_for('static', filename='econolite.ico') }}"> -->
+
+</head>
+<body class="application">
+
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+    <div class="container-fluid">
+	
+      <div class="navbar-header">
+        <a class="navbar-brand" href="./">  Weaver Analytics</a>
+      </div>
+    </div>
+  </div>
+
+
+	
+  
+
+
+  <div class="container-fluid">
+
+ 
+ 
+  
+    <div class="row">
+
+
+		<div class="col-sm-12">
+          <!-- Time Chart --> 
+            <div class="chart-wrapper">
+				<div class="chart-title">
+                Image Classification
+				</div>
+			  
+			  
+			<div class="chart-stage">
+			
+			
+
+
+			<form id = "imageUpload" method="post" enctype="multipart/form-data" >
+				<input type="file" name="file" onchange= inputAnalysis(this.files)>
+			</form>
+
+			<img src="" height="200" alt="Image preview...">
+
+			
+			<output for="classifier" id="classifier" > Who is it? </output>
+			
+			</div> 
+			  
+            </div>
+		</div>
+
+
+  
+  
+
+
+
+  </div>
+
+  <script src="./static/lib/js/jquery.min.js"></script>
+  <script src="./static/lib/js/d3.js"></script>
+  <script src="./static/lib/js/queue.js"></script>
+  <script src="./static/lib/js/plotly-latest.min.js"></script>
+  <script src="./static/lib/js/keen.min.js"></script>
+  <script src='./static/js/weaverAnalytics.js' type='text/javascript'></script>
+  
+
+	
+	
+
+</body>
+</html>
+
+
+
+
+
