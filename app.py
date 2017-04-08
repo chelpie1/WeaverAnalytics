@@ -4,6 +4,9 @@ import os
 import glob
 import json
 import base64
+import ipdb 
+import numpy as np
+from PIL import Image
 
 app = Flask(__name__)
 app.debug = True
@@ -22,14 +25,15 @@ def index():
 def imageAnalysis():
 	print(request.form['image'])
 	
-	image = request.form['image']
-	head, data = image.split(',')
+	image = request.form['image'].split(',')[1]
+	image = base64.b64decode(image)
 
-	data = base64.b64decode(data)
+	with open(r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\test.png', 'wb+') as f:
+		f.write(image)
 	
-	with open(r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\test.png', 'w+') as f:
-		f.write(data)
-			
+	img = Image.open(r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\test.png').convert('RGBA')
+	matrix = np.array(img)
+
 	
 	return '0' 
 	
