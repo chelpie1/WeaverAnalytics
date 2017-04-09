@@ -1,12 +1,14 @@
-#number-projects-nd {
-    font-size: 60px;
+/* body { */
+   /* overflow: hidden; */
+/* } */
+section {
+  /* The width of your document, I suppose */
+  /* width:600px; */
+  margin: 0 auto;
+  white-space:nowrap; 
+  overflow-x: scroll;
 }
-
-#total-donations-nd {
-    font-size: 60px;
-}
-
-.dc-chart g.row text {
-    fill: black;
-    font-size: 12px;
-}
+/* .pic-container { */
+ /* /* As large as it needs to be */ */
+  /* width: 1500px; */
+/* }​ */

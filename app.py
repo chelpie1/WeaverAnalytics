@@ -12,10 +12,26 @@ app = Flask(__name__ )
 app.debug = True
 
 imageDict = {}
-for filename in os.listdir(r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\FacialImages'):
-	
-	imageDict[filename] = [x for x in os.listdir(r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\FacialImages\\' + filename ) if x[-3:] == 'pgm' ] 
 
+facialPath = r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\FacialImages\\'
+for classes in os.listdir(facialPath)[0:3]:
+	
+	files = [x for x in os.listdir( facialPath + classes ) if x[-3:] == 'pgm' ][0:5] 
+	
+	temp = []
+	for x in files:
+		iMatrix =  np.array(Image.open(facialPath + classes + '\\' + x)).flatten().tolist()
+		place = np.array(Image.open(facialPath + classes + '\\' + x))
+		iMatrix = [ v for v in iMatrix for _ in (0,1,2,3)  ] 
+		iMatrix[3::4] = int(len(iMatrix)/4)*[255]
+		w = [ x, json.dumps(iMatrix) ]
+		
+		temp.append(w)
+		
+	# pics = [ [x, json.dumps( [ v for v in np.array(Image.open(facialPath + filename + '\\' + x)).flatten().tolist() for _ in (0,1,2,3)  ]  )  ] for x in files ]
+
+	
+	imageDict[classes]  = temp
 
 @app.route("/", methods = ["GET","POST"])
 def index():
