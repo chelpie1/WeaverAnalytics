@@ -1,0 +1,14 @@
+/* body { */
+   /* overflow: hidden; */
+/* } */
+section {
+  /* The width of your document, I suppose */
+  /* width:600px; */
+  margin: 0 auto;
+  white-space:nowrap; 
+  overflow-x: scroll;
+}
+/* .pic-container { */
+ /* /* As large as it needs to be */ */
+  /* width: 1500px; */
+/* }​ */
