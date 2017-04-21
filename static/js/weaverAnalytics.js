@@ -8,7 +8,8 @@ function plotPics(images)
 	for (var key in images) {
 	  if (images.hasOwnProperty(key)) 
 	  {
-		div =  `<section>
+
+		div =  'Subject: ' + key + ` <section>
 				  <div class="pic-container">
 					<div id = ` + key + ` class="pic-row">
 					</div>
@@ -17,7 +18,6 @@ function plotPics(images)
 		$('#pictures').append(div)
 		
 		div = 'Subject: ' + key  + ' '	  
-		$("#"+key).append(div)
 		for (var i = 0; i < images[key].length; i++) 
 		{
 			x = images[key][i]

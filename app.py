@@ -7,6 +7,10 @@ import base64
 import ipdb 
 import numpy as np
 from PIL import Image
+import PIL
+import re
+from io import BytesIO
+import LPCA_SRC_Classify as classifier
 
 app = Flask(__name__ )
 app.debug = True
@@ -14,7 +18,7 @@ app.debug = True
 imageDict = {}
 
 facialPath = r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\FacialImages\\'
-for classes in os.listdir(facialPath)[0:3]:
+for classes in os.listdir(facialPath)[0:4]:
 	
 	files = [x for x in os.listdir( facialPath + classes ) if x[-3:] == 'pgm' ][0:5] 
 	
@@ -44,17 +48,14 @@ def index():
 
 @app.route("/imageAnalysis", methods = ["POST"])
 def imageAnalysis():
-	print(request.form['image'])
-	
-	image = request.form['image'].split(',')[1]
-	image = base64.b64decode(image)
 
-	with open(r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\test.png', 'wb+') as f:
-		f.write(image)
-	
-	img = Image.open(r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\test.png').convert('RGBA')
-	matrix = np.array(img)
+	img_dict = re.match("data:(?P<type>.*?);(?P<encoding>.*?),(?P<data>.*)", request.form['image']).groupdict()
+	blob = img_dict['data'] 
 
+	im = Image.open(BytesIO(base64.b64decode(blob))).convert('L').resize(  (192,168  ) , PIL.Image.ANTIALIAS) 
+	matrix = np.array(im)
+	
+	label = classifier.LPCA_SRC_Classify(matrix)
 	
 	return '0' 
 	
