@@ -18,15 +18,17 @@ app.debug = True
 imageDict = {}
 
 facialPath = r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\FacialImages\\'
-for classes in os.listdir(facialPath)[0:4]:
-	
-	files = [x for x in os.listdir( facialPath + classes ) if x[-3:] == 'pgm' ][0:5] 
+for classes in os.listdir(facialPath)[0:5]:
+	print(classes)
+	files = [x for x in os.listdir( facialPath + classes ) if x[-3:] == 'pgm' ][0:10] 
 	
 	temp = []
 	for x in files:
+		#load up image
 		iMatrix =  np.array(Image.open(facialPath + classes + '\\' + x)).flatten().tolist()
-		place = np.array(Image.open(facialPath + classes + '\\' + x))
+		#convert to rgba matrix, probably not necessary?
 		iMatrix = [ v for v in iMatrix for _ in (0,1,2,3)  ] 
+		#set alpha
 		iMatrix[3::4] = int(len(iMatrix)/4)*[255]
 		w = [ x, json.dumps(iMatrix) ]
 		
@@ -52,11 +54,11 @@ def imageAnalysis():
 	img_dict = re.match("data:(?P<type>.*?);(?P<encoding>.*?),(?P<data>.*)", request.form['image']).groupdict()
 	blob = img_dict['data'] 
 
-	im = Image.open(BytesIO(base64.b64decode(blob))).convert('L').resize(  (192,168  ) , PIL.Image.ANTIALIAS) 
+	im = Image.open(BytesIO(base64.b64decode(blob))).convert('L').resize(  (168,192  ) , PIL.Image.ANTIALIAS) 
 	matrix = np.array(im)
-	
+	print( matrix.shape )
 	label = classifier.LPCA_SRC_Classify(matrix)
-	
+
 	return '0' 
 	
 

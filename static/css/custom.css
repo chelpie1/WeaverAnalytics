@@ -6,7 +6,8 @@ section {
   /* width:600px; */
   margin: 0 auto;
   white-space:nowrap; 
-  overflow-x: scroll;
+  overflow-x: auto;
+  
 }
 /* .pic-container { */
  /* /* As large as it needs to be */ */

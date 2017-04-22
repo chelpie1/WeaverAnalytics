@@ -20,19 +20,28 @@ function plotPics(images)
 		div = 'Subject: ' + key  + ' '	  
 		for (var i = 0; i < images[key].length; i++) 
 		{
+			scale = .5
 			x = images[key][i]
-			div = '<canvas id = ' + x[0] + ' width = 168 height =192 style="border:3px solid black;"/> '	  
+			div = '<canvas id = ' + x[0] + ' width = "' + scale*168 + '" height ="' + scale*192 + '" style="border:3px solid black;"/> '	  
 			$("#"+key).append(div)
 
-			b = document.getElementById(x[0]);
-			var ctx = b.getContext('2d');
-			ctx.scale(.5,.5)
-			// ctx.data = x[1]
-			temp = JSON.parse(x[1])
-			temp2 = new Uint8ClampedArray(JSON.parse(x[1]))
-			temp3 = new ImageData(      new Uint8ClampedArray(JSON.parse(x[1]))  , 168, 192       )
-			ctx.putImageData( new ImageData(      new Uint8ClampedArray(JSON.parse(x[1]))  , 168, 192       ), 0, 0);
+			canvas = document.getElementById(x[0]);
+			ctx = canvas.getContext('2d');
+			imageData = new ImageData(      new Uint8ClampedArray(JSON.parse(x[1]))  , 168, 192       )
 
+			
+			var newCanvas = $("<canvas>")
+				.attr("width", imageData.width)
+				.attr("height", imageData.height)[0];
+
+			newCanvas.getContext("2d").putImageData(imageData, 0, 0);
+
+			
+			ctx.scale(scale,scale)
+			ctx.drawImage( newCanvas, 0, 0);
+			
+			//ctx.drawImage( imageData, 0, 0, 168, 192,0, 0, 168/2, 192/2);
+			
 		}
 		
 	  }
