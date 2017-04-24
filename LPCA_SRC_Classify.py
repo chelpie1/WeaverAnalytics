@@ -39,7 +39,7 @@ def LPCA_SRC_Classify(y):
         pass
     elif np.shape(y) == (192, 168):
         dim1, dim2 = np.shape(y)
-        y = np.reshape(y, (dim1*dim2, 1))
+        y = np.reshape(y, (dim1*dim2,))
     else:
         ValueError('Image does not have the correct number of pixels.')
     
