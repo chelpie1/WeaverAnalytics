@@ -13,11 +13,11 @@ from io import BytesIO
 import LPCA_SRC_Classify as classifier
 
 app = Flask(__name__ )
-app.debug = True
+app.debug = False
 
 imageDict = {}
 
-facialPath = r'C:\Users\Ryan\Desktop\WeaverAnalytics\static\FacialImages\\'
+facialPath = r'C:\Users\chelpie\Desktop\WeaverAnalytics\static\FacialImages\\'
 for classes in os.listdir(facialPath)[0:5]:
 	print(classes)
 	files = [x for x in os.listdir( facialPath + classes ) if x[-3:] == 'pgm' ][0:10] 
@@ -64,4 +64,4 @@ def imageAnalysis():
 
 
 if __name__ == "__main__":
-    app.run(port=5015)
+    app.run(host = '192.168.111.1',port=5015)

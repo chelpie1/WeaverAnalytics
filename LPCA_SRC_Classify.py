@@ -14,7 +14,7 @@ train_mean = np.array(pd.read_csv(r'train_mean.dat', header=None))
 train_pt_ind = np.array(pd.read_csv(r'train_pt_ind.dat', header=None))
 
 # Reformat:
-train_mean = np.reshape(train_mean, (32256,1))
+train_mean = np.reshape(train_mean, (32256,))
 train_pt_ind = [i-1 for [i] in train_pt_ind]
 
 # Load in test data:
@@ -52,6 +52,8 @@ def LPCA_SRC_Classify(y):
 	
     print('distances')
     # Compute distances between the test point and each training point:
+    print(np.shape(np.tile(y_norm, (n_train, 1)).T))
+    print(np.shape(X_train_norm))
     dist_vects_pos = np.tile(y_norm, (n_train, 1)).T - X_train_norm
     DIST_pos = np.sqrt(sum(dist_vects_pos ** 2))
 
