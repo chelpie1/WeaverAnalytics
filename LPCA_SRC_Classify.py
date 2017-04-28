@@ -106,6 +106,7 @@ def LPCA_SRC_Classify(y):
     return np.argmin(ERR_y) + 1, [i[0] for i in ERR_y]
 
 
+<<<<<<< HEAD
 # for i in range(20):
 #     cl_info = LPCA_SRC_Classify(A_test_orig[: ,i])
 #     print("The predicted class of the test sample is {}.".format(cl_info[0]))
@@ -113,4 +114,18 @@ def LPCA_SRC_Classify(y):
 #     for l in range(10):
 #         print("The class {} residual is {:.2}".format(l+1, cl_info[1][l]))
 #     print("\n")
+=======
+# TO DO: 3. Formatting outside function where possible, possibly save as additional csv files?
+#        4. Any redundant variables?
+#        5. Clean up code, make look nice
+#        6. Consider how we want to display output (maybe ask Ryan his opinion)
+
+for i in range(20):
+    cl_info = LPCA_SRC_Classify(A_test_orig[: ,i])
+    print("The predicted class of the test sample is {}.".format(cl_info[0]))
+    print("The residual for each class is as follows:")
+    for l in range(10):
+        print("The class {} residual is {:.2}".format(l+1, cl_info[1][l]))
+    print("\n")
+>>>>>>> 6ae07cefe278b163fb38c64a9ec9862a66bf1894
 

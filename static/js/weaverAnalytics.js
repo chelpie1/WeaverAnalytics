@@ -71,11 +71,10 @@ function inputAnalysis(images)
 	   url:"/imageAnalysis",
 	   success: function(response) {
 		  
-		  
-		    var preview = document.getElementById('image');
+			var preview = document.getElementById('image');
 		    preview.src = reader.result;
 			b = document.getElementById('classifier');
-			b.innerHTML = "Who is it? It's Bob"
+			b.innerHTML = "You look like " + String(response)
 
 	   }
 	})
